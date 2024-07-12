@@ -9,6 +9,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); // Middleware untuk mendukung x-www-form-urlencoded
 app.use(upload.array());
 
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
 const db = mysql.createConnection({
   host: "34.101.175.252",
   user: "root",
