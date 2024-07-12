@@ -1,21 +1,4 @@
 steps:
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/electronics-store", "."]
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/electronics-store"]
   - name: "gcr.io/cloud-builders/gcloud"
-    args:
-      [
-        "start",
-        "deploy",
-        "electronics-store",
-        "--image",
-        "gcr.io/$PROJECT_ID/electronics-store",
-        "--port",
-        "5000",
-        "--region",
-        "asia-southeast2",
-        "--platform",
-        "managed",
-        "--allow-unauthenticated",
-      ]
+    args: ["app", "deploy"]
+timeout: "1600s"
