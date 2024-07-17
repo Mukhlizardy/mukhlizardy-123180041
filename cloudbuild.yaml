@@ -12,7 +12,7 @@ steps:
         "--image",
         "gcr.io/$PROJECT_ID/electronics_store",
         "--port",
-        "5000",
+        "5100",
         "--region",
         "us-central1",
         "--platform",
