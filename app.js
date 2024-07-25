@@ -26,6 +26,9 @@ db.connect((err) => {
   console.log("Connected to electronics_store database");
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello from users service! 😁");
+});
 // CRUD Users
 app.get("/users", (req, res) => {
   db.query("SELECT * FROM users", (err, results) => {
