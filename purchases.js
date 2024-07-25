@@ -1,26 +1,20 @@
 // Mengimport package
 const express = require("express");
-const router = express.Router();
 const db1 = require("./config");
 
-// CRUD purchases
-router.get("/", async (req, res) => {
-  try {
-    // Execute query ke database
-    const command = "SELECT * FROM purchases";
-    const data = await db1.promise().query(command);
+const router = express.Router();
 
-    // Mengirimkan respons jika berhasil
-    res.status(200).json({
-      status: "Success",
-      message: "Berhasil mengambil daftar users",
-      data: data[0],
-    });
-  } catch (error) {
-    // mengirimkan respons jika gagal
-    res.status(error.statusCode || 500).json({
-      status: "Error",
-      message: error.message,
-    });
-  }
+// CRUD purchases
+router.get("/", (req, res) => {
+  // Menggunakan root path untuk router ini
+  db1.query("SELECT * FROM purchases", (err, results) => {
+    if (err) {
+      console.error("Error fetching purchases:", err.stack);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+    res.json(results);
+  });
 });
+
+module.exports = router; // Mengekspor router
